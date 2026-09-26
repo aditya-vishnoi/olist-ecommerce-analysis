@@ -1,5 +1,5 @@
 
-CREATE VIEW geolocation_clean AS
+CREATE VIEW vw_geolocation_clean AS
 SELECT
     geolocation_zip_code_prefix,
     AVG(geolocation_lat) AS avg_lat,
@@ -12,3 +12,4 @@ GROUP BY geolocation_zip_code_prefix;
 
 select count(*) from geolocation_clean
 
+Select * from vw_geolocation_clean

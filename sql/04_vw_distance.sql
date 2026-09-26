@@ -1,4 +1,4 @@
-Create view vw_single_seller_distance as
+ALTER VIEW vw_single_seller_distance AS
 with single_seller_order as
 		(
 		Select
@@ -22,8 +22,9 @@ Select
 	on o.order_id = sso.order_id
 	inner join sellers as s
 	on s.seller_id = sso.seller_id
-	inner join geolocation_clean as gc
+	inner join vw_geolocation_clean as gc
 	on c.customer_zip_code_prefix = gc.geolocation_zip_code_prefix
-	inner join geolocation_clean as gs
+	inner join vw_geolocation_clean as gs
 	on s.seller_zip_code_prefix = gs.geolocation_zip_code_prefix
 
+Select * from vw_single_seller_distance

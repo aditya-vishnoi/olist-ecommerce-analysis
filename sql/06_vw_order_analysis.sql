@@ -1,4 +1,4 @@
-create view vw_order_analysis as
+Alter view vw_order_analysis as
 
 Select
 	do.order_id,
