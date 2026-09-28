@@ -3,6 +3,7 @@ Create view vw_order_analysis as
 
 Select
 	do.order_id,
+	ssd.seller_id,
 	do.customer_state,
 	do.is_late,
 	do.days_vs_estimate,

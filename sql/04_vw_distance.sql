@@ -12,6 +12,7 @@ with single_seller_order as
 
 Select
 	o.order_id,
+	s.seller_id,
 	c.customer_state,
 	s.seller_state,
 	Round(geography::Point(gc.avg_lat, gc.avg_lng, 4326).STDistance(geography::Point(gs.avg_lat, gs.avg_lng, 4326)) / 1000.0,2) AS distance_km
@@ -27,4 +28,4 @@ Select
 	inner join vw_geolocation_clean as gs
 	on s.seller_zip_code_prefix = gs.geolocation_zip_code_prefix
 
-Select * from vw_single_seller_distance
+	Select * from vw_single_seller_distance
