@@ -7,3 +7,5 @@ Select
 from sellers
 
 
+select
+* from vw_dim_seller
