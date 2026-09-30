@@ -11,7 +11,8 @@ Select
 	ssd.seller_state,
 	ssd.distance_km,
 	c.customer_unique_id,
-	Cast(o.order_purchase_timestamp as date) as order_date
+	Cast(o.order_purchase_timestamp as date) as order_date,
+	CAST(o.order_delivered_customer_date AS date) AS delivery_date
 from vw_delivered_orders as do
 Left join vw_order_review as vor
 on do.order_id = vor.order_id
@@ -23,4 +24,4 @@ inner join orders as o
 on o.order_id = do.order_id
 
 
-Select * from vw_order_analysis
+Select count(*) from vw_order_analysis
