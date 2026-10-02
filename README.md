@@ -50,6 +50,7 @@ used downstream:
 
 \- Orders split across multiple sellers (no single distance) have the lowest late rate of any group, at 3.32%.
 
+- **Late rate spikes seasonally** — sharp increases to ~15% in March and ~12% in October, against a baseline mostly in the 3-7% range. Worth further investigation.
 
 
 \## Power BI Dashboard
