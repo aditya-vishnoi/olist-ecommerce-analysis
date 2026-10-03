@@ -50,7 +50,11 @@ used downstream:
 
 \- Orders split across multiple sellers (no single distance) have the lowest late rate of any group, at 3.32%.
 
-- **Late rate spikes seasonally** — sharp increases to ~15% in March and ~12% in October, against a baseline mostly in the 3-7% range. Worth further investigation.
+\- **Late rate spikes are not a single seasonal pattern** — they differ by year and cause.
+  November 2017 saw both an order volume surge (4.5K → 7.3K orders) and a late-rate
+  spike to 12.4%, consistent with holiday demand straining delivery capacity. March 2018
+  saw a late-rate spike to 19% with no matching volume increase, suggesting a different,
+  unexplained cause. 2016 data is too sparse (267 orders) for seasonal analysis.
 
 
 \## Power BI Dashboard
