@@ -36,8 +36,14 @@ Built incrementally, each one checked against known row counts before being used
 
 ## Power BI Dashboard
 
-Star schema: `fact_orders` (order grain) related to `dim_customer` (customer_unique_id), `dim_seller` (seller_id), and `dim_date` (order_date, with an inactive relationship to delivery_date). `fact_order_items` (line-item grain) relates to `fact_orders` and `dim_product`.
+Star schema: `fact_orders` (order grain) related to `dim_customer` (customer_unique_id),
+`dim_seller` (seller_id), and `dim_date` (order_date, with an inactive relationship to
+delivery_date). `fact_order_items` (line-item grain) relates to `fact_orders` and `dim_product`.
 
-**Key measures:** Late Percentage, Avg Review Score, Avg Distance (km), Total Revenue
+**Key measures:** Late Percentage, Avg Review Score, Avg Distance (km), Total Revenue, % of Total Revenue
 
-![Distance vs late delivery rate](power-bi/screenshots/05_Mini_Dashboard.png)
+### Page 1 — Delivery & Satisfaction
+![Delivery and satisfaction dashboard](power-bi/screenshots/08_delivery_and_satisfaction.png)
+
+### Page 2 — Product & Revenue
+![Product and revenue dashboard](power-bi/screenshots/09_product_revenue_dashboard.png)
