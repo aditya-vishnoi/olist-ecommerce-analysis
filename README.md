@@ -32,7 +32,7 @@ Built incrementally, each one checked against known row counts before being used
 - 610 of 32,951 products have no category assigned at all in the source data. A further 13 have a Portuguese category name with no matching entry in the 71-row translation lookup table (e.g. "pc_gamer", "portateis_cozinha_e_preparados_de_alimentos").
 - **Product weight → delay (minor effect):** late-delivery rate is roughly flat for
   light-to-medium orders (6.54% vs 6.58%), then rises for heavy and very heavy orders
-  (7.00%, 8.84%). A much weaker effect than distance or review score.
+  (7.00%, 8.87%). A much weaker effect than distance or review score.
 
 ## Power BI Dashboard
 
