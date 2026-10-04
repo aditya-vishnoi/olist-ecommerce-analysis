@@ -2,81 +2,37 @@
 
 SQL and Power BI analysis of 100K Brazilian e-commerce orders — investigating how delivery distance and delay affect customer satisfaction
 
-
-
-
-
-\## Data
-
-
+## Data
 
 Brazilian e-commerce public dataset (Olist) from Kaggle, loaded into SQL Server.
 
+## SQL views (sql/)
 
+Built incrementally, each one checked against known row counts before being used downstream:
 
-\## SQL views (sql/)
+- `vw_delivered_orders` — delivered orders with a corrected, date-level `is_late` flag
+- `vw_order_review` — one review per order (deduplicated; some review_ids span multiple orders from the same checkout)
+- `vw_geolocation_clean` — average lat/lng per zip prefix, outlier coordinates filtered out
+- `vw_single_seller_distance` — real customer-to-seller distance in km (geography::STDistance), single-seller orders only
+- `vw_order_analysis` — unified order-level table joining the above (fact_orders in Power BI)
+- `vw_dim_customer` — one row per person (customer_unique_id), most recent address
+- `vw_dim_seller` — one row per seller
+- `vw_dim_product` — one row per product, joined to English category translations
+- `vw_fact_order_items` — one row per order line item (price, product, seller)
 
+## Key findings
 
+- **Delay → review score:** late deliveries get sharply worse reviews — ~1.9% late for 5-star orders vs ~37% late for 1-star orders.
+- **Distance → delay:** late-delivery rate rises with distance — 4.59% under 200km, up to 10.52% over 1000km.
+- Orders split across multiple sellers (no single distance) have the lowest late rate of any group, at 3.32%.
+- **Late rate spikes are not a single seasonal pattern** — they differ by year and cause. November 2017 saw both an order volume surge (4.5K → 7.3K orders) and a late-rate spike to 12.4%, consistent with holiday demand straining delivery capacity. March 2018 saw a late-rate spike to 19% with no matching volume increase, suggesting a different, unexplained cause. 2016 data is too sparse (267 orders) for seasonal analysis.
+- `Order_items` contains line items for all orders regardless of status; only delivered orders have corresponding rows in fact_orders.
+- 610 of 32,951 products have no category assigned at all in the source data. A further 13 have a Portuguese category name with no matching entry in the 71-row translation lookup table (e.g. "pc_gamer", "portateis_cozinha_e_preparados_de_alimentos").
 
-Built incrementally, each one checked against known row counts before being
+## Power BI Dashboard
 
-used downstream:
+Star schema: `fact_orders` (order grain) related to `dim_customer` (customer_unique_id), `dim_seller` (seller_id), and `dim_date` (order_date, with an inactive relationship to delivery_date). `fact_order_items` (line-item grain) relates to `fact_orders` and `dim_product`.
 
+**Key measures:** Late Percentage, Avg Review Score, Avg Distance (km), Total Revenue
 
-
-\- `vw\_delivered\_orders` — delivered orders with a corrected, date-level `is\_late` flag
-
-\- `vw\_order\_review` — one review per order (deduplicated; some review\_ids span multiple orders from the same checkout)
-
-\- `vw\_geolocation\_clean` — average lat/lng per zip prefix, outlier coordinates filtered out
-
-\- `vw\_single\_seller\_distance` — real customer-to-seller distance in km (geography::STDistance), single-seller orders only
-
-\- `vw\_order\_analysis` — unified order-level table joining the above (fact\_orders in Power BI)
-
-\- `vw\_dim\_customer` — one row per person (customer\_unique\_id), most recent address
-
-\- `vw\_dim\_seller` — one row per seller
-
-
-
-\## Key findings
-
-
-
-\- \*\*Delay → review score:\*\* late deliveries get sharply worse reviews — \~1.9% late for 5-star orders vs \~37% late for 1-star orders.
-
-\- \*\*Distance → delay:\*\* late-delivery rate rises with distance — 4.59% under 200km, up to 10.52% over 1000km.
-
-\- Orders split across multiple sellers (no single distance) have the lowest late rate of any group, at 3.32%.
-
-\- **Late rate spikes are not a single seasonal pattern** — they differ by year and cause.
-  November 2017 saw both an order volume surge (4.5K → 7.3K orders) and a late-rate
-  spike to 12.4%, consistent with holiday demand straining delivery capacity. March 2018
-  saw a late-rate spike to 19% with no matching volume increase, suggesting a different,
-  unexplained cause. 2016 data is too sparse (267 orders) for seasonal analysis.
-
-\- "Order_items contains line items for all orders regardless of status; only delivered orders have corresponding rows in fact_orders."
-
-\- " 610 of 32,951 products have no category assigned at all in the source data.
-  A further 13 have a Portuguese category name with no matching entry in the
-  71-row translation lookup table (e.g. "pc_gamer", "portateis_cozinha_e_preparadores_de_alimentos")."
-
-\## Power BI Dashboard
-
-
-
-Star schema: `fact\_orders` (order grain) related to `dim\_customer`
-
-(customer\_unique\_id), `dim\_seller` (seller\_id), and `dim\_date` (order\_date,
-
-with an inactive relationship to delivery\_date).
-
-
-
-\*\*Key measures:\*\* Late Percentage, Avg Review Score, Avg Distance (km)
-
-
-
-!\[Distance vs late delivery rate](power-bi/screenshots/05\_Mini\_Dashboard.png)
-
+![Distance vs late delivery rate](power-bi/screenshots/05_Mini_Dashboard.png)
