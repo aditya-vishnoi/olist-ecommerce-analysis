@@ -56,6 +56,11 @@ used downstream:
   saw a late-rate spike to 19% with no matching volume increase, suggesting a different,
   unexplained cause. 2016 data is too sparse (267 orders) for seasonal analysis.
 
+\- "Order_items contains line items for all orders regardless of status; only delivered orders have corresponding rows in fact_orders."
+
+\- " 610 of 32,951 products have no category assigned at all in the source data.
+  A further 13 have a Portuguese category name with no matching entry in the
+  71-row translation lookup table (e.g. "pc_gamer", "portateis_cozinha_e_preparadores_de_alimentos")."
 
 \## Power BI Dashboard
 
