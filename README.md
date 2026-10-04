@@ -43,7 +43,7 @@ delivery_date). `fact_order_items` (line-item grain) relates to `fact_orders` an
 **Key measures:** Late Percentage, Avg Review Score, Avg Distance (km), Total Revenue, % of Total Revenue
 
 ### Page 1 — Delivery & Satisfaction
-![Delivery and satisfaction dashboard](power-bi/screenshots/08_delivery_and_satisfaction.png)
+![Delivery and satisfaction dashboard](power-bi/screenshots/08_Delivery and Satisfaction.png)
 
 ### Page 2 — Product & Revenue
 ![Product and revenue dashboard](power-bi/screenshots/09_product_revenue_dashboard.png)
