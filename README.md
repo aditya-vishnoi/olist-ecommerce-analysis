@@ -20,7 +20,7 @@ Built incrementally, each one checked against known row counts before being used
 - `vw_dim_seller` — one row per seller
 - `vw_dim_product` — one row per product, joined to English category translations
 - `vw_fact_order_items` — one row per order line item (price, product, seller)
-- `vw_weight_vs_delay` — weight affect on order delay
+- `vw_weight_vs_delay` — order-level weight buckets (total weight per order) vs late-delivery rate — standalone validation query, same pattern as distance_vs_delay
 
 ## Key findings
 
