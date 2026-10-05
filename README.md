@@ -2,6 +2,10 @@
 
 SQL and Power BI analysis of 100K Brazilian e-commerce orders — investigating how delivery distance and delay affect customer satisfaction
 
+# Project Overview
+
+Found and fixed six real data-quality issues — mismatched join keys, NULL miscounted as a category, fan-out from bad joins — while answering four business questions: what drives late deliveries, which products carry the most risk, and where revenue concentrates
+
 ## Data
 
 Brazilian e-commerce public dataset (Olist) from Kaggle, loaded into SQL Server.
