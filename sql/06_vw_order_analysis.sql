@@ -24,4 +24,4 @@ inner join orders as o
 on o.order_id = do.order_id
 
 
-Select count(*) from vw_order_analysis
+Select * from vw_order_analysis

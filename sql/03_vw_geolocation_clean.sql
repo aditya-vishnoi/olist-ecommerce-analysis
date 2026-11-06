@@ -1,4 +1,3 @@
-
 CREATE VIEW vw_geolocation_clean AS
 SELECT
     geolocation_zip_code_prefix,
@@ -9,7 +8,5 @@ WHERE geolocation_lat BETWEEN -34 AND 6
   AND geolocation_lng BETWEEN -74 AND -32
 GROUP BY geolocation_zip_code_prefix;
 
-
-select count(*) from geolocation_clean
 
 Select * from vw_geolocation_clean

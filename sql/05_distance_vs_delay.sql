@@ -1,5 +1,3 @@
-
-
 SELECT
     CASE
         WHEN distance_km < 200 THEN '1. Near (<200km)'

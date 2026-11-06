@@ -15,7 +15,3 @@ INNER JOIN Customers AS c
 WHERE o.order_status = 'delivered'
   AND o.order_delivered_customer_date IS NOT NULL;
 
-
-select
-    *
-from vw_delivered_orders;

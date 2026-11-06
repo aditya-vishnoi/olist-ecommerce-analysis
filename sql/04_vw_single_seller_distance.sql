@@ -1,4 +1,4 @@
-ALTER VIEW vw_single_seller_distance AS
+CREATE VIEW vw_single_seller_distance AS
 with single_seller_order as
 		(
 		Select
